@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ASP.NET
 # Build and test ASP.NET projects.
 # Add steps that publish symbols, save build artifacts, deploy, and more:
@@ -5,3 +6,28 @@
 
 pool:
   vmImage: 'Ubuntu-16.04'
+=======
+pool:
+  vmImage: 'Ubuntu-16.04'
+  demands:
+    - npm
+
+steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core SDK 2.1.505'
+  inputs:
+    version: 2.1.505
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore project dependencies'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build the project - Release'
+  inputs:
+    command: 'build'
+    arguments: '--no-restore --configuration Release'
+    projects: '**/*.csproj'
+>>>>>>> fde66aa609ff6f29a134b6a4af46f4704c7be4ed
